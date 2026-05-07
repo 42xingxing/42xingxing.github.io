@@ -1,0 +1,101 @@
+name: Refresh GitHub stars
+
+on:
+  schedule:
+    # Every 3 days at 03:17 UTC (= 11:17 Singapore time)
+    - cron: "17 3 */3 * *"
+  workflow_dispatch:        # manual trigger
+  push:
+    paths:
+      - "**/*.html"
+      - ".github/workflows/refresh-stars.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-stars
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build assets/data/stars.json
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import json, os, re, sys, urllib.request, urllib.error
+
+          # 1. Discover every repo referenced via data-gh-stars="owner/repo"
+          #    in any HTML file in the repo.
+          repos = set()
+          for root, dirs, files in os.walk('.'):
+              dirs[:] = [d for d in dirs if d not in ('.git', 'node_modules')]
+              for fname in files:
+                  if not fname.endswith('.html'):
+                      continue
+                  path = os.path.join(root, fname)
+                  try:
+                      with open(path, encoding='utf-8') as fp:
+                          for m in re.finditer(r'data-gh-stars="([^"]+)"', fp.read()):
+                              repos.add(m.group(1))
+                  except OSError:
+                      pass
+
+          if not repos:
+              print('No data-gh-stars references found.')
+              sys.exit(0)
+
+          # 2. Fetch each repo's stargazers_count via the GitHub API.
+          token = os.environ.get('GH_TOKEN')
+          headers = {'Accept': 'application/vnd.github+json',
+                     'User-Agent': 'refresh-stars-workflow'}
+          if token:
+              headers['Authorization'] = f'Bearer {token}'
+
+          out = {}
+          errors = []
+          for repo in sorted(repos):
+              req = urllib.request.Request(
+                  f'https://api.github.com/repos/{repo}', headers=headers)
+              try:
+                  with urllib.request.urlopen(req, timeout=15) as r:
+                      data = json.load(r)
+                  n = data.get('stargazers_count')
+                  if isinstance(n, int):
+                      out[repo] = n
+                      print(f'  {repo}: {n}')
+                  else:
+                      errors.append(f'{repo}: missing stargazers_count')
+              except urllib.error.HTTPError as e:
+                  errors.append(f'{repo}: HTTP {e.code}')
+              except Exception as e:
+                  errors.append(f'{repo}: {e}')
+
+          # 3. Write the file (deterministic ordering).
+          os.makedirs('assets/data', exist_ok=True)
+          with open('assets/data/stars.json', 'w', encoding='utf-8') as f:
+              json.dump(out, f, indent=2, sort_keys=True)
+              f.write('\n')
+
+          if errors:
+              print('Warnings:', file=sys.stderr)
+              for e in errors:
+                  print('  ' + e, file=sys.stderr)
+          PY
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name  'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          if git diff --quiet -- assets/data/stars.json; then
+            echo 'stars.json unchanged.'
+          else
+            git add assets/data/stars.json
+            git commit -m "chore: refresh GitHub star counts"
+            git push
+          fi

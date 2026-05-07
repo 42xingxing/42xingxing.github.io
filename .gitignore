@@ -1,0 +1,19 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# IDE / agent local settings
+.claude/
+.cursor/
+.vscode/
+.idea/
+
+# Local-only files
+You_Qin_s_Resume.pdf
+
+# Build / dependency caches
+node_modules/
+__pycache__/
+*.pyc

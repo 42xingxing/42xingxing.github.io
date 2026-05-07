@@ -2,1244 +2,330 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>You Qin — NUS</title>
-  <meta name="description" content="You Qin — Ph.D. Student in Computer Science at the National University of Singapore. Research in multimodal understanding, video reasoning, and scene graph generation.">
-  <meta property="og:title" content="You Qin — NUS">
-  <meta property="og:description" content="Ph.D. Student in Computer Science. Research in multimodal understanding, video reasoning, and scene graph generation.">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231c1917'/%3E%3Ctext x='16' y='17' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-size='13' font-weight='600' fill='%23c9a84c'%3EYQ%3C/text%3E%3C/svg%3E">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>You Qin</title>
+  <meta name="author" content="You Qin">
+  <meta name="description" content="You Qin — Ph.D. student in Computer Science at the National University of Singapore. Research in multimodal foundation models, diffusion alignment, and audio-visual generation.">
+  <link rel="canonical" href="https://42xingxing.github.io/">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #fffefb;
-      --text: #1c1917;
-      --text-light: #78716c;
-      --accent: #b5912c;
-      --accent-hover: #9a7a1a;
-      --border: #ede6d6;
-      --surface: #faf7f0;
-      --gold: #c9a84c;
-      --gold-light: #e8d8a8;
-      --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-      --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
-      --max-w: 1240px;
-    }
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Slab:wght@300;400;500;700&display=swap" rel="stylesheet">
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.3/css/academicons.min.css" integrity="sha512-vaoopdl+FJahyY2ddhsbDj8yDiRuyUYH/vIjF3z+cBg0sKc07NAQmUYli8volCGlW9OwlQyjVsr7Lh6qAManlw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="/assets/css/main.css">
 
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 72px;
-    }
-
-    body {
-      font-family: var(--font-body);
-      font-weight: 400;
-      font-size: 0.95rem;
-      line-height: 1.65;
-      letter-spacing: 0.01em;
-      color: var(--text);
-      background: var(--bg);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    /* Subtle grain texture */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      opacity: 0.018;
-      pointer-events: none;
-      z-index: 9999;
-    }
-
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-    a:hover { color: var(--accent-hover); }
-
-    ::selection {
-      background: var(--gold);
-      color: var(--bg);
-    }
-
-    /* ─── Navigation ─── */
-    nav {
-      position: sticky;
-      top: 0;
-      width: 100%;
-      z-index: 100;
-      background: color-mix(in srgb, var(--bg) 85%, transparent);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav-inner {
-      padding: 0 3rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 54px;
-    }
-
-    .nav-name {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: var(--text);
-      letter-spacing: 0.02em;
-    }
-    .nav-name:hover { color: var(--accent); }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 1.6rem;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-    .nav-links::-webkit-scrollbar { display: none; }
-
-    .nav-links a {
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-light);
-      white-space: nowrap;
-      position: relative;
-      padding: 2px 0;
-      transition: color 0.25s ease;
-    }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      width: 0;
-      height: 1.5px;
-      background: var(--accent);
-      transition: width 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-    }
-    .nav-links a:hover { color: var(--text); }
-    .nav-links a:hover::after { width: 100%; }
-    .nav-links a.active { color: var(--accent); }
-    .nav-links a.active::after { width: 100%; }
-
-    /* ─── Header / Hero ─── */
-    header {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 3rem 3rem 2rem;
-    }
-
-    .header-inner {
-      display: flex;
-      align-items: center;
-      gap: 2.4rem;
-      animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-
-    .header-avatar {
-      flex-shrink: 0;
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: var(--surface);
-      border: 2px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    .header-avatar span {
-      font-family: var(--font-display);
-      font-weight: 400;
-      font-size: 2.4rem;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-      user-select: none;
-    }
-
-    .header-text {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .header-name {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: clamp(2rem, 4.5vw, 2.6rem);
-      letter-spacing: 0.04em;
-      line-height: 1.2;
-      color: var(--text);
-    }
-
-    .header-role {
-      font-family: var(--font-body);
-      font-weight: 400;
-      font-size: 0.95rem;
-      color: var(--text-light);
-      letter-spacing: 0.01em;
-      margin-top: 0.5rem;
-    }
-
-    .header-links {
-      margin-top: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 1.4rem;
-    }
-
-    .header-links a {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      font-size: 0.8rem;
-      font-weight: 400;
-      color: var(--text-light);
-      transition: color 0.25s ease;
-    }
-    .header-links a:hover { color: var(--accent); }
-    .header-links a svg {
-      width: 15px;
-      height: 15px;
-      opacity: 0.65;
-      transition: opacity 0.25s ease;
-    }
-    .header-links a:hover svg { opacity: 1; }
-
-    /* ─── Main ─── */
-    main {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 0 3rem 2.5rem;
-    }
-
-    /* ─── Sections ─── */
-    section {
-      padding: 2rem 0;
-      border-top: 1px solid var(--border);
-    }
-
-    .section-title {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 1.4rem;
-      letter-spacing: 0.02em;
-      margin-bottom: 1.2rem;
-      color: var(--text);
-      position: relative;
-      display: inline-block;
-    }
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 0;
-      width: 28px;
-      height: 1.5px;
-      background: linear-gradient(90deg, var(--gold), var(--gold-light));
-    }
-
-    /* ─── About ─── */
-    .about-text {
-      color: var(--text);
-    }
-    .about-text p + p {
-      margin-top: 0.8rem;
-    }
-
-    .research-tags {
-      margin-top: 1rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-    .research-tags span {
-      font-size: 0.75rem;
-      font-weight: 400;
-      letter-spacing: 0.03em;
-      padding: 0.25em 0.75em;
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      color: var(--text-light);
-      transition: border-color 0.2s ease, color 0.2s ease;
-    }
-    .research-tags span:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    /* ─── News ─── */
-    .news-list {
-      list-style: none;
-    }
-    .news-item {
-      display: flex;
-      gap: 1.4rem;
-      padding: 0.5rem 0;
-      align-items: baseline;
-    }
-    .news-item + .news-item {
-      border-top: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
-    }
-    .news-date {
-      flex-shrink: 0;
-      font-size: 0.78rem;
-      font-weight: 500;
-      color: var(--accent);
-      letter-spacing: 0.03em;
-      min-width: 52px;
-    }
-    .news-text {
-      font-size: 0.9rem;
-      color: var(--text);
-      line-height: 1.7;
-    }
-
-    /* ─── Experience ─── */
-    .exp-item + .exp-item {
-      margin-top: 1.4rem;
-      padding-top: 1.4rem;
-      border-top: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
-    }
-    .exp-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 0.5rem;
-    }
-    .exp-lab {
-      font-family: var(--font-body);
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--text);
-    }
-    .exp-role {
-      font-size: 0.85rem;
-      color: var(--text-light);
-      margin-top: 0.15rem;
-    }
-    .exp-date {
-      font-size: 0.8rem;
-      color: var(--text-light);
-      letter-spacing: 0.02em;
-      white-space: nowrap;
-    }
-    .exp-details {
-      list-style: none;
-      margin-top: 0.8rem;
-    }
-    .exp-details li {
-      position: relative;
-      padding-left: 1rem;
-      font-size: 0.88rem;
-      color: var(--text);
-      line-height: 1.65;
-    }
-    .exp-details li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0.65em;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--border);
-    }
-    .exp-details li + li { margin-top: 0.4rem; }
-
-    /* ─── Publications ─── */
-    .pub-item {
-      display: flex;
-      gap: 1.4rem;
-      align-items: flex-start;
-      padding: 0.9rem 0 0.9rem 1rem;
-      border-left: 2px solid transparent;
-      transition: border-color 0.3s ease, background 0.3s ease;
-      margin-left: -1rem;
-      padding-right: 0.5rem;
-    }
-    .pub-item:hover {
-      border-left-color: var(--accent);
-      background: color-mix(in srgb, var(--surface) 40%, transparent);
-    }
-    .pub-item + .pub-item {
-      border-top: 1px solid color-mix(in srgb, var(--border) 40%, transparent);
-    }
-
-    .pub-thumb {
-      flex-shrink: 0;
-      width: 180px;
-      height: 115px;
-      border-radius: 6px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .pub-item:hover .pub-thumb {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
-    }
-    .pub-thumb svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-    .pub-info {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .pub-venue {
-      display: inline-block;
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 0.15em 0.55em;
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      color: var(--text-light);
-      margin-bottom: 0.45rem;
-    }
-    .pub-title {
-      font-family: var(--font-body);
-      font-weight: 600;
-      font-size: 0.93rem;
-      color: var(--text);
-      line-height: 1.6;
-      margin-bottom: 0.35rem;
-    }
-    .pub-authors {
-      font-size: 0.82rem;
-      color: var(--text-light);
-      line-height: 1.6;
-    }
-    .pub-authors strong {
-      font-weight: 600;
-      color: var(--text);
-    }
-    .pub-conf {
-      font-size: 0.78rem;
-      font-style: italic;
-      color: var(--text-light);
-      opacity: 0.8;
-      margin-top: 0.25rem;
-    }
-    .pub-links {
-      margin-top: 0.5rem;
-      display: flex;
-      gap: 0.8rem;
-    }
-    .pub-links a {
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--accent);
-      padding: 0.1em 0;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.2s ease;
-    }
-    .pub-links a:hover {
-      border-bottom-color: var(--accent);
-    }
-
-    .pub-under-review {
-      margin-top: 1.2rem;
-    }
-    .pub-under-review summary {
-      font-family: var(--font-body);
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--text-light);
-      cursor: pointer;
-      letter-spacing: 0.03em;
-      padding: 0.5rem 0;
-      transition: color 0.2s ease;
-    }
-    .pub-under-review summary:hover { color: var(--accent); }
-    .pub-under-review[open] summary { margin-bottom: 0.5rem; }
-    .pub-review-tag {
-      font-size: 0.65rem;
-      font-weight: 500;
-      color: var(--text-light);
-      opacity: 0.7;
-      font-style: italic;
-    }
-
-    /* ─── Awards ─── */
-    .awards-list {
-      list-style: none;
-    }
-    .awards-list li {
-      position: relative;
-      padding: 0.35rem 0 0.35rem 1rem;
-      font-size: 0.9rem;
-      color: var(--text);
-    }
-    .awards-list li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0.95em;
-      width: 5px;
-      height: 5px;
-      border: 1.5px solid var(--accent);
-      border-radius: 50%;
-    }
-    .awards-list li + li {
-      border-top: 1px solid color-mix(in srgb, var(--border) 40%, transparent);
-    }
-    .award-context {
-      font-size: 0.82rem;
-      color: var(--text-light);
-    }
-
-    /* ─── Service ─── */
-    .service-text {
-      font-size: 0.9rem;
-      color: var(--text);
-      line-height: 1.65;
-    }
-    .service-text strong {
-      font-weight: 600;
-    }
-    .service-highlight {
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: var(--accent);
-    }
-
-    /* ─── Education ─── */
-    .edu-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      padding: 0.55rem 0;
-    }
-    .edu-item + .edu-item {
-      border-top: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
-    }
-    .edu-school {
-      font-weight: 600;
-      font-size: 0.93rem;
-      color: var(--text);
-    }
-    .edu-degree {
-      font-size: 0.85rem;
-      color: var(--text-light);
-      margin-top: 0.1rem;
-    }
-    .edu-gpa {
-      font-size: 0.8rem;
-      color: var(--text-light);
-    }
-    .edu-date {
-      font-size: 0.8rem;
-      color: var(--text-light);
-      letter-spacing: 0.02em;
-      white-space: nowrap;
-      text-align: right;
-    }
-
-    /* ─── Footer ─── */
-    footer {
-      max-width: var(--max-w);
-      margin: 0 auto;
-      padding: 1.5rem 3rem;
-      border-top: 1px solid var(--border);
-      text-align: center;
-    }
-    .footer-text {
-      font-size: 0.78rem;
-      color: var(--text-light);
-      letter-spacing: 0.02em;
-    }
-
-    /* ─── Animations ─── */
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(16px);
+  <script>
+    // Inline pre-paint theme init to avoid flash-of-wrong-mode.
+    (function () {
+      try {
+        var s = localStorage.getItem('theme');
+        if (s !== 'dark' && s !== 'light' && s !== 'system') s = 'system';
+        var resolved = s === 'system'
+          ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+          : s;
+        document.documentElement.setAttribute('data-theme', resolved);
+        document.documentElement.setAttribute('data-theme-setting', s);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
+        document.documentElement.setAttribute('data-theme-setting', 'system');
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .fade-in {
-      opacity: 0;
-      transform: translateY(14px);
-      transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* stagger children */
-    .stagger > * {
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .stagger.visible > * {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .stagger.visible > *:nth-child(1) { transition-delay: 0s; }
-    .stagger.visible > *:nth-child(2) { transition-delay: 0.05s; }
-    .stagger.visible > *:nth-child(3) { transition-delay: 0.1s; }
-    .stagger.visible > *:nth-child(4) { transition-delay: 0.15s; }
-    .stagger.visible > *:nth-child(5) { transition-delay: 0.2s; }
-    .stagger.visible > *:nth-child(6) { transition-delay: 0.25s; }
-    .stagger.visible > *:nth-child(7) { transition-delay: 0.3s; }
-    .stagger.visible > *:nth-child(8) { transition-delay: 0.35s; }
-    .stagger.visible > *:nth-child(9) { transition-delay: 0.4s; }
-    .stagger.visible > *:nth-child(10) { transition-delay: 0.45s; }
-
-    /* ─── Responsive ─── */
-    @media (max-width: 640px) {
-      .nav-inner { padding: 0 1.2rem; }
-      .nav-name { display: none; }
-      .nav-links { gap: 1.2rem; }
-
-      header { padding: 2rem 1.2rem 1.5rem; }
-      .header-inner { flex-direction: column; text-align: center; gap: 1.5rem; }
-      .header-avatar { width: 100px; height: 100px; }
-      .header-avatar span { font-size: 2rem; }
-      .header-name { font-size: 2rem; }
-      .header-links { justify-content: center; gap: 1.2rem; flex-wrap: wrap; }
-
-      main { padding: 0 1.2rem 2rem; }
-      section { padding: 1.5rem 0; }
-
-      .exp-header { flex-direction: column; }
-      .edu-item { flex-direction: column; gap: 0.2rem; }
-      .edu-date { text-align: left; }
-      .news-item { flex-direction: column; gap: 0.3rem; }
-      .pub-item { flex-direction: column; }
-      .pub-thumb { width: 100%; height: 160px; }
-    }
-
-    /* Reduce motion */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
-      html { scroll-behavior: auto; }
-    }
-  </style>
+    })();
+  </script>
 </head>
 
-<body>
+<body class="fixed-top-nav">
 
   <!-- ─── Navigation ─── -->
-  <nav>
-    <div class="nav-inner">
-      <a href="#" class="nav-name">You Qin</a>
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#news">News</a>
-        <a href="#experience">Experience</a>
-        <a href="#publications">Publications</a>
-        <a href="#service">Service</a>
-        <a href="#education">Education</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- ─── Header ─── -->
   <header>
-    <div class="header-inner">
-      <div class="header-avatar">
-        <span>YQ</span>
-      </div>
-      <div class="header-text">
-        <h1 class="header-name">You Qin</h1>
-        <p class="header-role">Ph.D. Student in Computer Science @ National University of Singapore</p>
-        <div class="header-links">
-          <a href="mailto:e0962995@u.nus.edu" aria-label="Email">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            Email
-          </a>
-          <a href="#" aria-label="Google Scholar">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-2a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/><path d="M0 11.5 12 0l12 11.5h-6V12l-6-4.5L6 12v-.5z"/></svg>
-            Scholar
-          </a>
-          <a href="https://github.com/yqin" aria-label="GitHub">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-            GitHub
-          </a>
+    <nav id="navbar" class="navbar navbar-light navbar-expand-md fixed-top" role="navigation">
+      <div class="container">
+        <a class="navbar-brand title font-weight-lighter" href="/">
+          <span class="font-weight-bold">You</span> Qin
+        </a>
+        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse text-right" id="navbarNav">
+          <ul class="navbar-nav ml-auto flex-nowrap">
+            <li class="nav-item active"><a class="nav-link" href="/">about</a></li>
+            <li class="nav-item"><a class="nav-link" href="/publications/">publications</a></li>
+            <li class="nav-item"><a class="nav-link" href="/cv/">cv</a></li>
+            <li class="toggle-container">
+              <button id="light-toggle" type="button" title="Change theme" aria-label="Change theme">
+                <i class="fa-solid fa-circle-half-stroke" data-theme-target="system"></i>
+                <i class="fa-solid fa-moon"               data-theme-target="dark"></i>
+                <i class="fa-solid fa-sun"                data-theme-target="light"></i>
+              </button>
+            </li>
+          </ul>
         </div>
       </div>
-    </div>
+    </nav>
   </header>
 
-  <main>
+  <!-- ─── Main ─── -->
+  <div class="container mt-5 pt-4" role="main">
+    <div class="post">
 
-    <!-- ─── About ─── -->
-    <section id="about">
-      <h2 class="section-title fade-in">About</h2>
-      <div class="about-text fade-in">
-        <p>
-          I am a Ph.D. student in Computer Science at the
-          <a href="https://www.comp.nus.edu.sg/" target="_blank" rel="noopener">National University of Singapore</a>,
-          researching at the <strong>Next++ Research Center</strong> with
-          <a href="https://www.comp.nus.edu.sg/~rogerz/" target="_blank" rel="noopener">Prof. Roger Zimmermann</a>.
-          My work focuses on multimodal understanding &mdash; teaching machines to ground language in visual experiences,
-          generate structured scene representations, and reason across vision and language.
+      <header class="post-header">
+        <h1 class="post-title">
+          <span class="font-weight-bold">You</span> Qin
+        </h1>
+        <p class="desc">
+          <a href="https://www.comp.nus.edu.sg/" target="_blank" rel="noopener">School of Computing</a>,
+          <a href="https://nus.edu.sg/" target="_blank" rel="noopener">National University of Singapore</a>
         </p>
-        <p>
-          My research interests include video moment retrieval, scene graph generation, temporal grounding,
-          and cross-modal diffusion models.
-        </p>
-      </div>
-      <div class="research-tags fade-in">
-        <span>Multimodal Learning</span>
-        <span>Video Moment Retrieval</span>
-        <span>Scene Graph Generation</span>
-        <span>Temporal Grounding</span>
-        <span>3D Vision</span>
-        <span>Diffusion Models</span>
-      </div>
-    </section>
+      </header>
 
-    <!-- ─── News ─── -->
-    <section id="news">
-      <h2 class="section-title fade-in">News</h2>
-      <ul class="news-list stagger fade-in">
-        <li class="news-item">
-          <span class="news-date">2025</span>
-          <span class="news-text">One paper on <em>Video Moment Retrieval</em> accepted at <strong>ICLR 2025</strong>.</span>
-        </li>
-        <li class="news-item">
-          <span class="news-date">2025</span>
-          <span class="news-text">One paper on <em>Video OOD Detection</em> accepted at <strong>ICCV 2025</strong>.</span>
-        </li>
-        <li class="news-item">
-          <span class="news-date">2025</span>
-          <span class="news-text">One paper on <em>Video Dialog Grounding</em> accepted at <strong>IEEE Transactions on Multimedia</strong>.</span>
-        </li>
-        <li class="news-item">
-          <span class="news-date">2024</span>
-          <span class="news-text">Recognized as <strong>Outstanding Reviewer</strong> at ACM Multimedia 2024.</span>
-        </li>
-        <li class="news-item">
-          <span class="news-date">2024</span>
-          <span class="news-text">Started Ph.D. in Computer Science at the National University of Singapore.</span>
-        </li>
-        <li class="news-item">
-          <span class="news-date">2024</span>
-          <span class="news-text">Two papers accepted at <strong>ICASSP 2024</strong>.</span>
-        </li>
-        <li class="news-item">
-          <span class="news-date">2024</span>
-          <span class="news-text">One paper on <em>Panoptic Scene Graph Generation</em> accepted at <strong>AAAI 2024</strong>.</span>
-        </li>
-        <li class="news-item">
-          <span class="news-date">2023</span>
-          <span class="news-text">One paper accepted at <strong>ACM Multimedia 2023</strong>.</span>
-        </li>
-      </ul>
-    </section>
-
-    <!-- ─── Experience ─── -->
-    <section id="experience">
-      <h2 class="section-title fade-in">Research Experience</h2>
-
-      <div class="exp-item fade-in">
-        <div class="exp-header">
-          <div>
-            <div class="exp-lab">Next++ Sea Joint Lab, National University of Singapore</div>
-            <div class="exp-role">Research Intern</div>
-          </div>
-          <span class="exp-date">Sep 2022 &mdash; Present</span>
-        </div>
-        <ul class="exp-details">
-          <li>Multi-modal Information Retrieval for Panoptic Scene Graph Generation</li>
-          <li>Multi-modal Understanding for Video Moment Retrieval</li>
-          <li>Described Spatial-Temporal Video Detection (DSTVD) benchmark and framework</li>
-        </ul>
-      </div>
-
-      <div class="exp-item fade-in">
-        <div class="exp-header">
-          <div>
-            <div class="exp-lab">Intelligent Machine Perception Lab, SUTD</div>
-            <div class="exp-role">Research Associate</div>
-          </div>
-          <span class="exp-date">Mar 2024 &mdash; Aug 2024</span>
-        </div>
-        <ul class="exp-details">
-          <li>Fully Sparse Multi-modal 3D Object Detection with Dynamic Prompting</li>
-          <li>Pretrained Diffusion for Single-view 3D Scene Generation</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ─── Publications ─── -->
-    <section id="publications">
-      <h2 class="section-title fade-in">Publications</h2>
-
-      <div class="stagger fade-in">
-
-        <!-- ICLR 2025 -->
-        <div class="pub-item">
-          <div class="pub-thumb">
-            <svg viewBox="0 0 220 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="220" height="140" rx="8" fill="#eef2ff"/>
-              <rect x="18" y="18" width="38" height="28" rx="5" fill="#a5b4fc"/>
-              <rect x="62" y="18" width="38" height="28" rx="5" fill="#a5b4fc"/>
-              <rect x="106" y="18" width="38" height="28" rx="5" fill="#818cf8"/>
-              <rect x="150" y="18" width="38" height="28" rx="5" fill="#818cf8"/>
-              <rect x="22" y="24" width="10" height="4" rx="2" fill="#c7d2fe"/><rect x="22" y="31" width="16" height="3" rx="1.5" fill="#c7d2fe"/>
-              <rect x="66" y="24" width="12" height="4" rx="2" fill="#c7d2fe"/><rect x="66" y="31" width="14" height="3" rx="1.5" fill="#c7d2fe"/>
-              <rect x="110" y="24" width="8" height="4" rx="2" fill="#e0e7ff"/><rect x="110" y="31" width="18" height="3" rx="1.5" fill="#e0e7ff"/>
-              <rect x="154" y="24" width="14" height="4" rx="2" fill="#e0e7ff"/><rect x="154" y="31" width="10" height="3" rx="1.5" fill="#e0e7ff"/>
-              <rect x="18" y="56" width="170" height="4" rx="2" fill="#c7d2fe"/>
-              <rect x="98" y="53" width="70" height="10" rx="5" fill="#6366f1" opacity="0.25"/>
-              <rect x="98" y="53" width="70" height="10" rx="5" stroke="#6366f1" stroke-width="1.5" fill="none"/>
-              <circle cx="133" cy="58" r="2.5" fill="#6366f1"/>
-              <rect x="22" y="78" width="82" height="26" rx="13" fill="#6366f1"/>
-              <rect x="32" y="87" width="48" height="4" rx="2" fill="white" opacity="0.7"/>
-              <rect x="32" y="94" width="32" height="3" rx="1.5" fill="white" opacity="0.45"/>
-              <path d="M104 91 L120 63" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.6"/>
-              <circle cx="163" cy="98" r="18" fill="#e0e7ff" stroke="#818cf8" stroke-width="2"/>
-              <line x1="177" y1="112" x2="188" y2="123" stroke="#818cf8" stroke-width="2.5" stroke-linecap="round"/>
-              <rect x="154" y="94" width="18" height="3" rx="1.5" fill="#818cf8" opacity="0.5"/>
-              <rect x="156" y="100" width="14" height="3" rx="1.5" fill="#818cf8" opacity="0.4"/>
-            </svg>
-          </div>
-          <div class="pub-info">
-            <div class="pub-venue">ICLR 2025</div>
-            <div class="pub-title">Generalized Video Moment Retrieval</div>
-            <div class="pub-authors"><strong>You Qin</strong>, Qilong Wu, Yicong Li, Wei Ji, Li Li, Pengcheng Cai, Lina Wei, Roger Zimmermann</div>
-            <div class="pub-conf">International Conference on Learning Representations</div>
-            <div class="pub-links">
-              <a href="#">Paper</a>
-              <a href="#">Code</a>
-            </div>
-          </div>
+      <article>
+        <div class="profile float-right">
+          <figure class="text-center mb-0">
+            <div class="profile-tile">YQ</div>
+            <figcaption class="mt-2" style="font-size:0.78rem; color:var(--global-text-color-light);">You Qin</figcaption>
+          </figure>
         </div>
 
-        <!-- ICCV 2025 -->
-        <div class="pub-item">
-          <div class="pub-thumb">
-            <svg viewBox="0 0 220 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="220" height="140" rx="8" fill="#f0fdfa"/>
-              <!-- Device -->
-              <rect x="28" y="20" width="60" height="100" rx="10" fill="white" stroke="#5eead4" stroke-width="2"/>
-              <rect x="36" y="32" width="44" height="56" rx="4" fill="#ccfbf1"/>
-              <rect x="42" y="40" width="14" height="10" rx="3" fill="#2dd4bf"/><rect x="60" y="40" width="14" height="10" rx="3" fill="#2dd4bf" opacity="0.6"/>
-              <rect x="42" y="55" width="32" height="8" rx="2" fill="#99f6e4"/>
-              <rect x="42" y="67" width="20" height="6" rx="2" fill="#99f6e4" opacity="0.6"/>
-              <circle cx="58" cy="104" r="5" fill="none" stroke="#5eead4" stroke-width="1.5"/>
-              <!-- Shield -->
-              <path d="M140 28 L140 62 Q140 82 158 92 Q176 82 176 62 L176 28 L158 20 Z" fill="#0d9488" opacity="0.15" stroke="#0d9488" stroke-width="2"/>
-              <polyline points="148,56 156,64 170,46" stroke="#0d9488" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <!-- OOD sample rejected -->
-              <rect x="120" y="100" width="28" height="20" rx="4" fill="#fca5a5" opacity="0.6"/>
-              <line x1="124" y1="104" x2="144" y2="116" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/>
-              <line x1="144" y1="104" x2="124" y2="116" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/>
-              <!-- Arrow: device to shield -->
-              <path d="M92 58 L128 52" stroke="#5eead4" stroke-width="1.5" stroke-dasharray="4 3"/>
-              <polygon points="128,49 134,52 128,55" fill="#5eead4"/>
-              <!-- In-distribution sample accepted -->
-              <rect x="160" y="100" width="28" height="20" rx="4" fill="#bbf7d0" opacity="0.6"/>
-              <polyline points="168,110 174,116 184,106" stroke="#22c55e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="pub-info">
-            <div class="pub-venue">ICCV 2025</div>
-            <div class="pub-title">Secure On-Device Video OOD Detection Without Backpropagation</div>
-            <div class="pub-authors">Li Li, Peilin Cai, Yuxiao Zhou, Zhiyu Ni, Renjie Liang, <strong>You Qin</strong>, Yi Nian, Zhengzhong Tu, Xiyang Hu, Yue Zhao</div>
-            <div class="pub-conf">International Conference on Computer Vision</div>
-            <div class="pub-links">
-              <a href="#">Paper</a>
-            </div>
-          </div>
+        <div class="about clearfix">
+          <p>
+            Hello! I’m You, a Ph.D. student in Computer Science at the
+            <a href="https://www.comp.nus.edu.sg/" target="_blank" rel="noopener">National University of Singapore</a>,
+            where I’m fortunate to be advised by Prof.
+            <a href="https://www.comp.nus.edu.sg/cs/people/rogerz/" target="_blank" rel="noopener">Roger Zimmermann</a>.
+          </p>
+          <p>
+            My research focuses on multimodal foundation models — including diffusion alignment,
+            video understanding, and audio-visual generation — with an interest in approaches that are
+            simple, scalable, and generalisable.
+          </p>
+          <p>
+            I am currently a research intern at
+            <a href="https://hunyuan.tencent.com/" target="_blank" rel="noopener">Tencent Hunyuan</a> (Application Center),
+            where I work with Dr.
+            <a href="https://scholar.google.com/citations?user=VXQV5xwAAAAJ" target="_blank" rel="noopener">Chunyu Wang</a>
+            and Dr.
+            <a href="https://scholar.google.com/citations?user=Hy12lcEAAAAJ" target="_blank" rel="noopener">Linqing Wang</a>
+            on diffusion-model alignment. Before that, I was a research associate at the
+            <a href="https://impl2023.github.io/" target="_blank" rel="noopener">Intelligent Machine Perception Lab</a> at SUTD with Dr.
+            <a href="https://na-z.github.io/" target="_blank" rel="noopener">Na Zhao</a>,
+            and a research intern at the
+            <a href="https://www.nextcenter.org/" target="_blank" rel="noopener">Next++ Sea Joint Lab</a> at NUS with Dr.
+            <a href="https://jiwei0523.github.io/" target="_blank" rel="noopener">Wei Ji</a>.
+          </p>
+          <p>
+            I have collaborated closely with
+            <a href="https://haofei.vip/" target="_blank" rel="noopener">Prof. Hao Fei</a>,
+            Dr. Wei Ji, Dr. Li Li, and Dr. Yifang Yin.
+            Recently, I have been working with Dr. Linqing Wang on rectified-flow diffusion alignment.
+          </p>
+          <p>
+            Feel free to reach out if you would like to chat or discuss any ideas! You can find my contact
+            information at the bottom of this page.
+          </p>
         </div>
 
-        <!-- IEEE TMM 2025 -->
-        <div class="pub-item">
-          <div class="pub-thumb">
-            <svg viewBox="0 0 220 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="220" height="140" rx="8" fill="#fffbeb"/>
-              <!-- Video frame -->
-              <rect x="16" y="22" width="72" height="52" rx="6" fill="white" stroke="#fbbf24" stroke-width="2"/>
-              <rect x="22" y="28" width="60" height="34" rx="3" fill="#fef3c7"/>
-              <circle cx="40" cy="42" r="6" fill="#fbbf24" opacity="0.5"/>
-              <rect x="52" y="38" width="24" height="4" rx="2" fill="#fcd34d"/>
-              <rect x="52" y="46" width="18" height="3" rx="1.5" fill="#fcd34d" opacity="0.6"/>
-              <polygon points="46,42 42,39 42,45" fill="#d97706" opacity="0.6"/>
-              <!-- Timeline at bottom -->
-              <rect x="16" y="82" width="188" height="4" rx="2" fill="#fde68a"/>
-              <circle cx="50" cy="84" r="5" fill="#f59e0b" stroke="white" stroke-width="1.5"/>
-              <circle cx="130" cy="84" r="5" fill="#f59e0b" stroke="white" stroke-width="1.5"/>
-              <text x="46" y="100" font-size="6" fill="#d97706" font-family="sans-serif">t₁</text>
-              <text x="126" y="100" font-size="6" fill="#d97706" font-family="sans-serif">t₂</text>
-              <!-- Chat bubbles -->
-              <rect x="112" y="18" width="90" height="22" rx="11" fill="#f59e0b"/>
-              <rect x="120" y="26" width="56" height="3.5" rx="1.75" fill="white" opacity="0.7"/>
-              <rect x="130" y="44" width="76" height="22" rx="11" fill="#fbbf24"/>
-              <rect x="138" y="52" width="44" height="3.5" rx="1.75" fill="white" opacity="0.7"/>
-              <!-- Connecting arrows -->
-              <path d="M88 48 L112 29" stroke="#d97706" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.5"/>
-              <path d="M88 52 L130 55" stroke="#d97706" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.5"/>
-              <path d="M50 78 L50 89" stroke="#d97706" stroke-width="1" opacity="0.4"/>
-              <path d="M130 78 L130 89" stroke="#d97706" stroke-width="1" opacity="0.4"/>
-              <!-- "Dual Grounding" label -->
-              <rect x="68" y="108" width="84" height="18" rx="9" fill="#d97706" opacity="0.12"/>
-              <text x="110" y="120" text-anchor="middle" font-size="7" fill="#d97706" font-family="sans-serif" font-weight="500">Dual Grounding</text>
-            </svg>
-          </div>
-          <div class="pub-info">
-            <div class="pub-venue">IEEE TMM 2025</div>
-            <div class="pub-title">Grounding is All You Need? Dual Temporal Grounding for Video Dialog</div>
-            <div class="pub-authors"><strong>You Qin</strong>, Wei Ji, Xinze Lan, Hao Fei, Xun Yang, Dan Guo, Roger Zimmermann, Lizi Liao</div>
-            <div class="pub-conf">IEEE Transactions on Multimedia</div>
-            <div class="pub-links">
-              <a href="#">Paper</a>
-            </div>
-          </div>
+        <!-- ─── Selected Works ─── -->
+        <h2 class="section-h2"><a href="/publications/">selected works</a></h2>
+
+        <div class="publications">
+          <ol class="bibliography">
+
+            <li>
+              <div class="row">
+                <div class="col col-sm-2 abbr">
+                  <abbr class="badge">NeurIPS&nbsp;2026</abbr>
+                  <div class="award">Under Review</div>
+                </div>
+                <div class="col-sm-10">
+                  <div class="title">SOAR: Self-Correction for Optimal Alignment and Refinement in Diffusion Models</div>
+                  <div class="author">
+                    <em>You Qin</em>, Linqing Wang, Hao Fei, Roger Zimmermann, Liefeng Bo, Qinglin Lu, Chunyu Wang
+                  </div>
+                  <div class="periodical">
+                    <em>Conference on Neural Information Processing Systems</em>, 2026
+                  </div>
+                  <div class="periodical">
+                    <span class="note">A scalable, reward-free post-training framework for rectified-flow diffusion models. Open-sourced at HY-SOAR (<span data-gh-stars="Tencent-Hunyuan/HY-SOAR" data-fallback="400+">400+</span>&nbsp;★).</span>
+                  </div>
+                  <div class="links">
+                    <a href="https://arxiv.org/abs/2604.12617" class="btn btn-sm" target="_blank" rel="noopener">arXiv</a>
+                    <a href="https://github.com/Tencent-Hunyuan/HY-SOAR" class="btn btn-sm" target="_blank" rel="noopener">Code</a>
+                    <a href="https://hy-soar.github.io/" class="btn btn-sm" target="_blank" rel="noopener">Website</a>
+                    <a href="https://huggingface.co/papers/2604.12617" class="btn btn-sm" target="_blank" rel="noopener">HF</a>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="row">
+                <div class="col col-sm-2 abbr">
+                  <abbr class="badge">arXiv&nbsp;Survey</abbr>
+                </div>
+                <div class="col-sm-10">
+                  <div class="title">Audio-Visual Intelligence in Large Foundation Models</div>
+                  <div class="author">
+                    <em>You Qin</em>, Kai Liu, Shengqiong Wu, Kai Wang, Shijian Deng, Yapeng Tian, Junbin Xiao, Yazhou Xing, Yinghao Ma, Bobo Li, Roger Zimmermann, Lei Cui, Furu Wei, Jiebo Luo, Hao Fei
+                  </div>
+                  <div class="periodical">
+                    <em>arXiv:2605.04045</em> &middot; 56 pages, 16 figures &middot; 2026
+                  </div>
+                  <div class="links">
+                    <a href="https://arxiv.org/abs/2605.04045" class="btn btn-sm" target="_blank" rel="noopener">arXiv</a>
+                    <a href="https://github.com/JavisVerse/Awesome-AVI" class="btn btn-sm" target="_blank" rel="noopener">Awesome List</a>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="row">
+                <div class="col col-sm-2 abbr">
+                  <abbr class="badge">ICLR&nbsp;2025</abbr>
+                </div>
+                <div class="col-sm-10">
+                  <div class="title">Generalized Video Moment Retrieval</div>
+                  <div class="author">
+                    <em>You Qin</em>, Qilong Wu, Yicong Li, Wei Ji, Li Li, Pengcheng Cai, Lina Wei, Roger Zimmermann
+                  </div>
+                  <div class="periodical">
+                    <em>In International Conference on Learning Representations</em>, 2025
+                  </div>
+                  <div class="links">
+                    <a href="https://openreview.net/pdf?id=qdOIkeZ5e4" class="btn btn-sm" target="_blank" rel="noopener">PDF</a>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="row">
+                <div class="col col-sm-2 abbr">
+                  <abbr class="badge">ICCV&nbsp;2025</abbr>
+                </div>
+                <div class="col-sm-10">
+                  <div class="title">Secure On-Device Video OOD Detection Without Backpropagation</div>
+                  <div class="author">
+                    Li Li, Peilin Cai, Yuxiao Zhou, Zhiyu Ni, Renjie Liang, <em>You Qin</em>, Yi Nian, Zhengzhong Tu, Xiyang Hu, Yue Zhao
+                  </div>
+                  <div class="periodical">
+                    <em>In International Conference on Computer Vision</em>, 2025
+                  </div>
+                  <div class="links">
+                    <a href="https://arxiv.org/abs/2503.06166" class="btn btn-sm" target="_blank" rel="noopener">arXiv</a>
+                    <a href="https://github.com/Dystopians/SecDOOD" class="btn btn-sm" target="_blank" rel="noopener">Code</a>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="row">
+                <div class="col col-sm-2 abbr">
+                  <abbr class="badge">IEEE&nbsp;TMM&nbsp;2026</abbr>
+                </div>
+                <div class="col-sm-10">
+                  <div class="title">Grounding is All You Need? Dual Temporal Grounding for Video Dialog</div>
+                  <div class="author">
+                    <em>You Qin</em>, Wei Ji, Xinze Lan, Hao Fei, Xun Yang, Dan Guo, Roger Zimmermann, Lizi Liao
+                  </div>
+                  <div class="periodical">
+                    <em>IEEE Transactions on Multimedia</em>, 2026
+                  </div>
+                  <div class="links">
+                    <a href="https://arxiv.org/abs/2410.05767" class="btn btn-sm" target="_blank" rel="noopener">arXiv</a>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="row">
+                <div class="col col-sm-2 abbr">
+                  <abbr class="badge">AAAI&nbsp;2024</abbr>
+                </div>
+                <div class="col-sm-10">
+                  <div class="title">Panoptic Scene Graph Generation with Semantics-prototype Learning</div>
+                  <div class="author">
+                    Li Li, Wei Ji, Yiming Wu, Mengze Li, <em>You Qin</em>, Lina Wei, Roger Zimmermann
+                  </div>
+                  <div class="periodical">
+                    <em>In AAAI Conference on Artificial Intelligence</em>, 2024
+                  </div>
+                  <div class="links">
+                    <a href="https://arxiv.org/abs/2307.15567" class="btn btn-sm" target="_blank" rel="noopener">arXiv</a>
+                    <a href="https://github.com/lili0415/PSG-biased-annotation" class="btn btn-sm" target="_blank" rel="noopener">Code</a>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li>
+              <div class="row">
+                <div class="col col-sm-2 abbr">
+                  <abbr class="badge">ACM&nbsp;MM&nbsp;2023</abbr>
+                </div>
+                <div class="col-sm-10">
+                  <div class="title">Biased-Predicate Annotation Identification via Unbiased Visual Predicate Representation</div>
+                  <div class="author">
+                    Li Li*, Chenwei Wang*, <em>You Qin</em>, Wei Ji, Renjie Liang
+                  </div>
+                  <div class="periodical">
+                    <em>In ACM International Conference on Multimedia</em>, 2023
+                  </div>
+                </div>
+              </div>
+            </li>
+
+          </ol>
         </div>
 
-        <!-- AAAI 2024 -->
-        <div class="pub-item">
-          <div class="pub-thumb">
-            <svg viewBox="0 0 220 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="220" height="140" rx="8" fill="#f5f3ff"/>
-              <!-- Scene background -->
-              <rect x="16" y="16" width="188" height="90" rx="6" fill="#ede9fe" opacity="0.6"/>
-              <!-- Object nodes -->
-              <circle cx="50" cy="42" r="16" fill="#c4b5fd" stroke="#8b5cf6" stroke-width="1.5"/>
-              <rect x="42" y="36" width="16" height="12" rx="3" fill="#8b5cf6" opacity="0.4"/>
-              <circle cx="140" cy="38" r="14" fill="#a78bfa" stroke="#7c3aed" stroke-width="1.5"/>
-              <rect x="133" y="33" width="14" height="10" rx="2" fill="#7c3aed" opacity="0.4"/>
-              <circle cx="90" cy="80" r="13" fill="#ddd6fe" stroke="#a78bfa" stroke-width="1.5"/>
-              <rect x="83" y="75" width="14" height="10" rx="2" fill="#a78bfa" opacity="0.4"/>
-              <circle cx="170" cy="76" r="12" fill="#c4b5fd" stroke="#8b5cf6" stroke-width="1.5"/>
-              <rect x="164" y="72" width="12" height="8" rx="2" fill="#8b5cf6" opacity="0.4"/>
-              <!-- Relationship arrows -->
-              <line x1="66" y1="42" x2="126" y2="38" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arrowP)"/>
-              <line x1="56" y1="56" x2="82" y2="70" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arrowP)"/>
-              <line x1="103" y1="80" x2="158" y2="76" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arrowP)"/>
-              <line x1="144" y1="52" x2="165" y2="64" stroke="#7c3aed" stroke-width="1.5" marker-end="url(#arrowP)"/>
-              <defs><marker id="arrowP" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,1 L7,4 L0,7" fill="#7c3aed"/></marker></defs>
-              <!-- Relation labels -->
-              <rect x="82" y="34" width="32" height="10" rx="5" fill="#7c3aed" opacity="0.15"/>
-              <rect x="87" y="37.5" width="22" height="3" rx="1.5" fill="#7c3aed" opacity="0.4"/>
-              <rect x="56" y="60" width="26" height="10" rx="5" fill="#7c3aed" opacity="0.15"/>
-              <rect x="60" y="63.5" width="18" height="3" rx="1.5" fill="#7c3aed" opacity="0.4"/>
-              <!-- Prototype label -->
-              <rect x="50" y="112" width="120" height="18" rx="9" fill="#7c3aed" opacity="0.12"/>
-              <text x="110" y="124" text-anchor="middle" font-size="7" fill="#7c3aed" font-family="sans-serif" font-weight="500">Semantics Prototype</text>
-            </svg>
+        <!-- ─── Social / Contact ─── -->
+        <div class="social">
+          <div class="contact-icons">
+            <a href="mailto:e0962995@u.nus.edu" title="Email" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://github.com/42xingxing" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://scholar.google.com/citations?user=qC39v8kAAAAJ" target="_blank" rel="noopener" title="Google Scholar" aria-label="Google Scholar"><i class="ai ai-google-scholar"></i></a>
+            <button id="wechat-trigger" type="button" class="contact-link" title="WeChat" aria-label="WeChat" aria-haspopup="dialog" aria-controls="wechat-modal"><i class="fa-brands fa-weixin"></i></button>
+            <a href="https://x.com/42xingxing" target="_blank" rel="noopener" title="X (Twitter)" aria-label="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
           </div>
-          <div class="pub-info">
-            <div class="pub-venue">AAAI 2024</div>
-            <div class="pub-title">Panoptic Scene Graph Generation with Semantics-prototype Learning</div>
-            <div class="pub-authors">Li Li, Wei Ji, Yiming Wu, Mengze Li, <strong>You Qin</strong>, Lina Wei, Roger Zimmermann</div>
-            <div class="pub-conf">Association for the Advancement of Artificial Intelligence</div>
-            <div class="pub-links">
-              <a href="#">Paper</a>
-            </div>
+          <div class="contact-note">e0962995 [at] u.nus.edu &nbsp;·&nbsp; +65 8039 5597</div>
+        </div>
+
+        <!-- ─── WeChat QR modal ─── -->
+        <div id="wechat-modal" class="wechat-modal" role="dialog" aria-modal="true" aria-labelledby="wechat-modal-caption" aria-hidden="true">
+          <div class="wechat-modal__panel">
+            <button type="button" class="wechat-modal__close" aria-label="Close">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+            <img src="/assets/wechat_qr.png" alt="You Qin's WeChat QR code">
+            <div id="wechat-modal-caption" class="wechat-modal__caption">扫一扫加我微信 · Scan to add me on WeChat</div>
           </div>
         </div>
 
-        <!-- ICASSP 2024 — MRTNet -->
-        <div class="pub-item">
-          <div class="pub-thumb">
-            <svg viewBox="0 0 220 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="220" height="140" rx="8" fill="#f0f9ff"/>
-              <!-- Multi-resolution layers -->
-              <!-- Coarse level -->
-              <rect x="24" y="18" width="172" height="18" rx="4" fill="#bae6fd" opacity="0.5"/>
-              <rect x="28" y="22" width="80" height="10" rx="3" fill="#38bdf8"/>
-              <rect x="116" y="22" width="76" height="10" rx="3" fill="#7dd3fc"/>
-              <text x="14" y="30" font-size="7" fill="#0284c7" font-family="sans-serif" opacity="0.6">L1</text>
-              <!-- Medium level -->
-              <rect x="24" y="44" width="172" height="18" rx="4" fill="#bae6fd" opacity="0.4"/>
-              <rect x="28" y="48" width="50" height="10" rx="3" fill="#38bdf8"/>
-              <rect x="84" y="48" width="36" height="10" rx="3" fill="#0ea5e9"/>
-              <rect x="126" y="48" width="28" height="10" rx="3" fill="#7dd3fc"/>
-              <rect x="160" y="48" width="32" height="10" rx="3" fill="#38bdf8" opacity="0.7"/>
-              <text x="14" y="56" font-size="7" fill="#0284c7" font-family="sans-serif" opacity="0.6">L2</text>
-              <!-- Fine level -->
-              <rect x="24" y="70" width="172" height="18" rx="4" fill="#bae6fd" opacity="0.3"/>
-              <rect x="28" y="74" width="22" height="10" rx="3" fill="#38bdf8" opacity="0.7"/>
-              <rect x="54" y="74" width="18" height="10" rx="3" fill="#0ea5e9"/>
-              <rect x="76" y="74" width="26" height="10" rx="3" fill="#38bdf8"/>
-              <rect x="106" y="74" width="20" height="10" rx="3" fill="#7dd3fc"/>
-              <rect x="130" y="74" width="16" height="10" rx="3" fill="#0ea5e9" opacity="0.7"/>
-              <rect x="150" y="74" width="24" height="10" rx="3" fill="#38bdf8" opacity="0.5"/>
-              <rect x="178" y="74" width="14" height="10" rx="3" fill="#7dd3fc" opacity="0.7"/>
-              <text x="14" y="82" font-size="7" fill="#0284c7" font-family="sans-serif" opacity="0.6">L3</text>
-              <!-- Merge arrows -->
-              <path d="M110 36 L110 44" stroke="#0284c7" stroke-width="1.2" opacity="0.4"/>
-              <path d="M110 62 L110 70" stroke="#0284c7" stroke-width="1.2" opacity="0.4"/>
-              <!-- Sentence query -->
-              <rect x="30" y="100" width="100" height="24" rx="12" fill="#0284c7"/>
-              <rect x="40" y="108" width="60" height="4" rx="2" fill="white" opacity="0.7"/>
-              <rect x="40" y="115" width="40" height="3" rx="1.5" fill="white" opacity="0.45"/>
-              <!-- Arrow to highlight -->
-              <path d="M130 112 L160 90" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.5"/>
-              <!-- Grounded result -->
-              <rect x="145" y="100" width="56" height="24" rx="6" fill="#0284c7" opacity="0.12"/>
-              <rect x="151" y="106" width="20" height="6" rx="2" fill="#38bdf8" opacity="0.6"/>
-              <rect x="175" y="106" width="20" height="6" rx="2" fill="#38bdf8"/>
-              <rect x="151" y="115" width="16" height="4" rx="2" fill="#7dd3fc" opacity="0.5"/>
-            </svg>
-          </div>
-          <div class="pub-info">
-            <div class="pub-venue">ICASSP 2024</div>
-            <div class="pub-title">MRTNet: Multi-Resolution Temporal Network for Video Sentence Grounding</div>
-            <div class="pub-authors">Wei Ji, <strong>You Qin</strong>, Long Chen, Yinwei Wei, Yiming Wu, Fangfang Wang, Roger Zimmermann</div>
-            <div class="pub-conf">International Conference on Acoustics, Speech, &amp; Signal Processing</div>
-            <div class="pub-links">
-              <a href="#">Paper</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- ICASSP 2024 — Domain-wise -->
-        <div class="pub-item">
-          <div class="pub-thumb">
-            <svg viewBox="0 0 220 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="220" height="140" rx="8" fill="#fff1f2"/>
-              <!-- Domain A -->
-              <ellipse cx="48" cy="36" rx="32" ry="22" fill="#fecdd3" stroke="#fb7185" stroke-width="1.5" stroke-dasharray="4 2"/>
-              <circle cx="38" cy="32" r="5" fill="#fb7185"/><circle cx="54" cy="30" r="4" fill="#f43f5e" opacity="0.6"/>
-              <circle cx="46" cy="42" r="4.5" fill="#fb7185" opacity="0.7"/>
-              <text x="48" y="58" text-anchor="middle" font-size="6.5" fill="#e11d48" font-family="sans-serif">Domain A</text>
-              <!-- Domain B -->
-              <ellipse cx="48" cy="100" rx="32" ry="22" fill="#fecdd3" stroke="#fb7185" stroke-width="1.5" stroke-dasharray="4 2"/>
-              <circle cx="40" cy="96" r="4.5" fill="#f43f5e" opacity="0.7"/><circle cx="56" cy="94" r="5" fill="#fb7185"/>
-              <circle cx="48" cy="106" r="4" fill="#fb7185" opacity="0.6"/>
-              <text x="48" y="122" text-anchor="middle" font-size="6.5" fill="#e11d48" font-family="sans-serif">Domain B</text>
-              <!-- Convergence arrows -->
-              <path d="M80 36 L118 56" stroke="#e11d48" stroke-width="1.5" opacity="0.5"/>
-              <polygon points="118,53 122,58 116,59" fill="#e11d48" opacity="0.5"/>
-              <path d="M80 100 L118 80" stroke="#e11d48" stroke-width="1.5" opacity="0.5"/>
-              <polygon points="118,83 122,78 116,77" fill="#e11d48" opacity="0.5"/>
-              <!-- Invariant feature space -->
-              <rect x="120" y="40" width="80" height="60" rx="10" fill="#e11d48" opacity="0.08" stroke="#e11d48" stroke-width="1.5"/>
-              <!-- Shared features -->
-              <circle cx="145" cy="58" r="6" fill="#f43f5e" opacity="0.5"/><circle cx="162" cy="52" r="5" fill="#fb7185"/>
-              <circle cx="150" cy="74" r="5.5" fill="#fb7185" opacity="0.6"/><circle cx="175" cy="66" r="5" fill="#f43f5e" opacity="0.4"/>
-              <circle cx="168" cy="82" r="4.5" fill="#fb7185" opacity="0.5"/>
-              <!-- Graph connections in invariant space -->
-              <line x1="145" y1="58" x2="162" y2="52" stroke="#e11d48" stroke-width="1" opacity="0.3"/>
-              <line x1="145" y1="58" x2="150" y2="74" stroke="#e11d48" stroke-width="1" opacity="0.3"/>
-              <line x1="162" y1="52" x2="175" y2="66" stroke="#e11d48" stroke-width="1" opacity="0.3"/>
-              <line x1="175" y1="66" x2="168" y2="82" stroke="#e11d48" stroke-width="1" opacity="0.3"/>
-              <line x1="150" y1="74" x2="168" y2="82" stroke="#e11d48" stroke-width="1" opacity="0.3"/>
-              <!-- Label -->
-              <text x="160" y="110" text-anchor="middle" font-size="6.5" fill="#e11d48" font-family="sans-serif" font-weight="500">Invariant Space</text>
-            </svg>
-          </div>
-          <div class="pub-info">
-            <div class="pub-venue">ICASSP 2024</div>
-            <div class="pub-title">Domain-wise Invariant Learning for Panoptic Scene Graph Generation</div>
-            <div class="pub-authors">Li Li, <strong>You Qin</strong>, Wei Ji, Yuxiao Zhou, Roger Zimmermann</div>
-            <div class="pub-conf">International Conference on Acoustics, Speech, &amp; Signal Processing</div>
-            <div class="pub-links">
-              <a href="#">Paper</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- ACM MM 2023 -->
-        <div class="pub-item">
-          <div class="pub-thumb">
-            <svg viewBox="0 0 220 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="220" height="140" rx="8" fill="#ecfdf5"/>
-              <!-- Image frame -->
-              <rect x="16" y="16" width="90" height="68" rx="6" fill="white" stroke="#6ee7b7" stroke-width="1.5"/>
-              <!-- Objects in image -->
-              <circle cx="40" cy="38" r="10" fill="#a7f3d0" stroke="#34d399" stroke-width="1.5"/>
-              <rect x="36" y="34" width="8" height="8" rx="2" fill="#34d399" opacity="0.5"/>
-              <rect x="62" y="50" width="30" height="20" rx="4" fill="#6ee7b7" stroke="#34d399" stroke-width="1.2"/>
-              <rect x="67" y="55" width="20" height="4" rx="2" fill="#34d399" opacity="0.4"/>
-              <rect x="67" y="62" width="14" height="3" rx="1.5" fill="#34d399" opacity="0.3"/>
-              <!-- Predicate labels -->
-              <rect x="120" y="22" width="80" height="20" rx="10" fill="#059669" opacity="0.15"/>
-              <text x="160" y="35" text-anchor="middle" font-size="7" fill="#059669" font-family="sans-serif">on top of</text>
-              <polyline points="174,36 178,40 182,36" stroke="#059669" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-              <rect x="120" y="52" width="80" height="20" rx="10" fill="#059669" opacity="0.15"/>
-              <text x="160" y="65" text-anchor="middle" font-size="7" fill="#059669" font-family="sans-serif">next to</text>
-              <polyline points="174,66 178,70 182,66" stroke="#059669" stroke-width="1.2" stroke-linecap="round" fill="none"/>
-              <!-- Connection from objects to labels -->
-              <path d="M50 38 L120 32" stroke="#34d399" stroke-width="1.2" stroke-dasharray="3 2" opacity="0.5"/>
-              <path d="M92 60 L120 62" stroke="#34d399" stroke-width="1.2" stroke-dasharray="3 2" opacity="0.5"/>
-              <!-- Biased vs Unbiased section -->
-              <rect x="16" y="96" width="88" height="28" rx="6" fill="#fca5a5" opacity="0.2" stroke="#f87171" stroke-width="1" stroke-dasharray="3 2"/>
-              <text x="60" y="110" text-anchor="middle" font-size="7" fill="#dc2626" font-family="sans-serif">Biased</text>
-              <line x1="32" y1="115" x2="48" y2="115" stroke="#dc2626" stroke-width="1.5"/>
-              <line x1="36" y1="112" x2="44" y2="118" stroke="#dc2626" stroke-width="1.2"/>
-              <line x1="44" y1="112" x2="36" y2="118" stroke="#dc2626" stroke-width="1.2"/>
-              <rect x="116" y="96" width="88" height="28" rx="6" fill="#bbf7d0" opacity="0.3" stroke="#34d399" stroke-width="1"/>
-              <text x="160" y="110" text-anchor="middle" font-size="7" fill="#059669" font-family="sans-serif">Unbiased</text>
-              <polyline points="150,116 156,122 168,112" stroke="#059669" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="pub-info">
-            <div class="pub-venue">ACM MM 2023</div>
-            <div class="pub-title">Biased-Predicate Annotation Identification via Unbiased Visual Predicate Representation</div>
-            <div class="pub-authors">Li Li*, Chenwei Wang*, <strong>You Qin</strong>, Wei Ji, Renjie Liang &nbsp;<span class="award-context">(* Equal Contribution)</span></div>
-            <div class="pub-conf">ACM International Conference on Multimedia</div>
-            <div class="pub-links">
-              <a href="#">Paper</a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Under Review -->
-      <details class="pub-under-review fade-in">
-        <summary>Preprints &amp; Under Review</summary>
-
-        <div class="pub-item">
-          <div class="pub-info">
-            <div class="pub-venue">CVPR 2026</div>
-            <div class="pub-title">Contextual Hashing Meets Lightweight Convolution: Accelerating Retrieval and Refining Localization for Video Corpus Moment Retrieval
-              <span class="pub-review-tag">&mdash; Under Review</span>
-            </div>
-            <div class="pub-authors">Mingjin Kuai, Jin Peng, Zheqi Lv, <strong>You Qin</strong>, Zhan Yang, Zhen Zhang, Wei Zhou, Wei Ji</div>
-          </div>
-        </div>
-
-        <div class="pub-item">
-          <div class="pub-info">
-            <div class="pub-venue">IEEE TMM</div>
-            <div class="pub-title">Dynamic Graph-enhanced Event Refinement for Temporal Sentence Grounding of Micro-moments
-              <span class="pub-review-tag">&mdash; Under Major Revision</span>
-            </div>
-            <div class="pub-authors">Mingjin Kuai*, <strong>You Qin*</strong>, Xiang Fang, Yiming Wu, Wei Ji, Roger Zimmermann &nbsp;<span class="award-context">(* Equal Contribution)</span></div>
-          </div>
-        </div>
-
-        <div class="pub-item">
-          <div class="pub-info">
-            <div class="pub-venue">IEEE TGRS</div>
-            <div class="pub-title">SRDiff: A Cross-Modal Diffusion Model for Satellite-to-Radar Transformation in Precipitation Nowcasting
-              <span class="pub-review-tag">&mdash; Under Review</span>
-            </div>
-            <div class="pub-authors"><strong>You Qin</strong>, Jinming Cao, Ting Wang, Yifang Yin, Li Li, Shili Xiang, Ying Zhang, Roger Zimmermann</div>
-          </div>
-        </div>
-
-      </details>
-    </section>
-
-    <!-- ─── Service ─── -->
-    <section id="service">
-      <h2 class="section-title fade-in">Academic Service</h2>
-      <div class="service-text fade-in">
-        Conference Reviewer: &nbsp;
-        <strong>NeurIPS</strong> 2025 &nbsp;&middot;&nbsp;
-        <strong>ICLR</strong> 2025 &nbsp;&middot;&nbsp;
-        <strong>ICCV</strong> 2025 &nbsp;&middot;&nbsp;
-        <strong>ACM Multimedia</strong> 2023, 2024
-        <span class="service-highlight">(Outstanding Reviewer)</span>
-      </div>
-    </section>
-
-    <!-- ─── Education ─── -->
-    <section id="education">
-      <h2 class="section-title fade-in">Education</h2>
-      <div class="stagger fade-in">
-
-        <div class="edu-item">
-          <div>
-            <div class="edu-school">National University of Singapore</div>
-            <div class="edu-degree">Ph.D. in Computer Science</div>
-          </div>
-          <div class="edu-date">Aug 2024 &mdash; Present</div>
-        </div>
-
-        <div class="edu-item">
-          <div>
-            <div class="edu-school">National University of Singapore</div>
-            <div class="edu-degree">Master of Computing, General Track &nbsp;<span class="edu-gpa">GPA: 4.50 / 5.0</span></div>
-          </div>
-          <div class="edu-date">Aug 2022 &mdash; Jan 2024</div>
-        </div>
-
-        <div class="edu-item">
-          <div>
-            <div class="edu-school">University of Electronic Science and Technology of China</div>
-            <div class="edu-degree">B.Sc. in Mathematics for Information &amp; Computing Science &nbsp;<span class="edu-gpa">GPA: 3.71 / 4.0</span></div>
-          </div>
-          <div class="edu-date">Sep 2018 &mdash; Jun 2022</div>
-        </div>
-
-      </div>
-    </section>
-
-  </main>
+      </article>
+    </div>
+  </div>
 
   <!-- ─── Footer ─── -->
-  <footer>
-    <p class="footer-text">&copy; 2025 You Qin &nbsp;&middot;&nbsp; National University of Singapore</p>
+  <footer class="fixed-bottom" role="contentinfo">
+    <div class="container mt-0">
+      &copy; Copyright <span id="year">2026</span> You Qin. Last updated: May 2026.
+    </div>
   </footer>
 
-  <!-- ─── Scripts ─── -->
-  <script>
-    // Scroll-triggered fade-in animations
-    const fadeObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, {
-      threshold: 0.08,
-      rootMargin: '0px 0px -40px 0px'
-    });
-
-    document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
-
-    // Active nav link tracking
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-links a');
-
-    const navObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('id');
-          navLinks.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-          });
-        }
-      });
-    }, {
-      threshold: 0.15,
-      rootMargin: '-72px 0px -60% 0px'
-    });
-
-    sections.forEach(section => navObserver.observe(section));
-  </script>
-
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script defer src="/assets/js/theme.js"></script>
+  <script defer src="/assets/js/gh-stars.js"></script>
+  <script defer src="/assets/js/wechat.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
