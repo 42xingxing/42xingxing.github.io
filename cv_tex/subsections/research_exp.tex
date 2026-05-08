@@ -1,0 +1,65 @@
+\section{Research Experience}
+
+\cvBlockStart
+
+  % --------- Tencent Hunyuan, Application Center ---------
+  \item
+  \cvHeading
+    {\cvLink{https://hunyuan.tencent.com/}{Tencent Hunyuan}, Application Center}{Nov 2025 -- Present}
+    {Research Intern \,\textperiodcentered\, Advisors:
+      \cvLink{https://scholar.google.com/citations?user=VXQV5xwAAAAJ}{Chunyu Wang}
+      \,\&\,
+      \cvLink{https://scholar.google.com/citations?user=Hy12lcEAAAAJ}{Linqing Wang}}{Shenzhen, China}
+
+  \cvProjectLinks{\textbf{(1) SOAR: Self-Correction for Optimal Alignment in Rectified-Flow Diffusion}}{\cvLink{https://hy-soar.github.io/}{Project Page}\,\textperiodcentered\,\cvLink{https://arxiv.org/abs/2604.12617}{Report}}
+  \cvListStart
+    \item Proposed a scalable, \emph{reward-free} post-training framework that targets exposure bias in the denoising trajectory by sampling on-trajectory states, performing a stop-gradient CFG rollout with the current model, and supervising the denoiser with analytical correction targets.
+    \item Designed an on-policy, dense, per-timestep objective that subsumes the standard SFT loss and remains compatible with subsequent RL alignment.
+    \item On SD3.5-Medium: GenEval $\mathbf{0.70 \rightarrow 0.78}$ and OCR $\mathbf{0.64 \rightarrow 0.67}$ over SFT, with simultaneous gains on every DrawBench preference and quality metric; surpasses Flow-GRPO on aesthetic and CLIPScore tasks despite using \emph{no} reward model.
+    \item Open-sourced as \cvLink{https://github.com/Tencent-Hunyuan/HY-SOAR}{HY-SOAR} (400+ GitHub stars).
+  \cvListEnd
+
+  \cvProject{\textbf{(2) JAVRL: Joint Audio-Video RL for Multi-Speaker Lip-Sync Alignment}}{}
+  \cvListStart
+    \item Contributed to project design; specifically designed a \textbf{contrastive speaker-sync reward} for dual/multi-speaker scenes that compares SyncNet scores across visible faces to enforce correct who-speaks-what assignment, requiring no annotations or paired lip-sync data.
+  \cvListEnd
+
+  % --------- IMPL @ SUTD ---------
+  \item
+  \cvHeading
+    {\cvLink{https://impl2023.github.io/}{Intelligent Machine Perception Lab}, Singapore University of Technology and Design}{Mar 2024 -- Aug 2024}
+    {Research Associate \,\textperiodcentered\, Advisor: \cvLink{https://na-z.github.io/}{Prof.~Na Zhao}}{Singapore}
+
+  \cvProject{\textbf{(1) Fully-Sparse Multi-modal 3D Object Detection with Dynamic Prompting}}{}
+  \cvListStart
+    \item Designed a fully-sparse architecture fusing LiDAR point clouds with RGB images to improve 3D detection efficiency and accuracy.
+    \item Implemented a dynamic-prompt mechanism that adaptively guides the detector's attention across diverse scenes.
+  \cvListEnd
+
+  \cvProject{\textbf{(2) Pre-trained Diffusion for Single-view 3D Scene Generation}}{}
+  \cvListStart
+    \item Investigated pre-trained diffusion priors for generating 3D Gaussian-Splatting representations from a single image.
+    \item Prototyped an image-to-3D pipeline that hallucinates occluded content via diffusion and converts it into a continuous representation for novel-view synthesis.
+  \cvListEnd
+
+  % --------- Next++ Sea Joint Lab @ NUS ---------
+  \item
+  \cvHeading
+    {\cvLink{https://www.nextcenter.org/}{Next++ Sea Joint Lab}, National University of Singapore}{Sep 2022 -- Mar 2024}
+    {Research Intern \,\textperiodcentered\, Advisor: \cvLink{https://jiwei0523.github.io/}{Prof.~Wei Ji}}{Singapore}
+
+  \cvProject{\textbf{(1) Multi-modal Information Retrieval for Panoptic Scene Graph Generation (PSG)}}{}
+  \cvListStart
+    \item Developed representation-approximation and invariant-learning techniques that find ``invariant'' predicate representations across visual semantics, bridging multimodal data for the PSG task.
+    \item Introduced a coreset-based formulation to clean multimodal datasets; recall improved by $\sim$\textbf{50\%} over prior methods on semantic-relation recognition.
+    \item The proposed framework generalises naturally to arbitrary modality combinations.
+  \cvListEnd
+
+  \cvProject{\textbf{(2) Multi-modal Understanding for Video Moment Retrieval (VMR)}}{}
+  \cvListStart
+    \item Designed \textbf{MRTNet}, a plug-and-play module enforcing feature consistency across multi-resolutions and queries; significant gains at marginal compute cost.
+    \item Built \textbf{IntroDis}, a dual-teacher framework integrating in-distribution and OOD perspectives with counterfactual reasoning for robust OOD generalisation.
+    \item Reconstructed a new benchmark and proposed a complete framework for \textbf{Described Spatial-Temporal Video Detection (DSTVD)}, grounding arbitrary object tubelets from natural-language descriptions.
+  \cvListEnd
+
+\cvBlockEnd

@@ -1,0 +1,253 @@
+%-------------------------------------------------------------
+%  Curriculum Vitae --- Qin You
+%  Premium academic redesign
+%  Engine : pdflatex (Overleaf / TeX Live full)
+%-------------------------------------------------------------
+\documentclass[letterpaper,10.5pt]{article}
+
+% -------------------- ENCODING & TYPOGRAPHY --------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}                        % Latin Modern Roman (matches xyliugo's CV)
+\linespread{0.95}
+\usepackage{microtype}                      % Premium micro-typography
+
+% -------------------- LAYOUT --------------------
+\usepackage[letterpaper,
+  top=0.5in, bottom=0.45in, left=0.7in, right=0.7in,
+  footskip=0.28in]{geometry}
+
+\usepackage[explicit]{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{fontawesome5}
+\usepackage{tikz}
+\usepackage{ragged2e}
+\usepackage{etoolbox}
+\usepackage{needspace}                       % Prevent orphan section headings
+
+% -------------------- COLOR PALETTE --------------------
+\definecolor{accent}{HTML}{1F3A5F}        % Deep navy
+\definecolor{accentSoft}{HTML}{4A6A91}    % Lighter navy
+\definecolor{ink}{HTML}{1A1A1A}           % Body text
+\definecolor{muted}{HTML}{6B6F77}         % Dates, secondary
+\definecolor{rule}{HTML}{C9CED6}          % Hairline rule
+\definecolor{tagBg}{HTML}{EEF2F8}         % Soft tag background
+\definecolor{linkBlue}{HTML}{1F5AA8}      % In-text hyperlink colour (advisors / project pages)
+% Unified badge palette: all single-icon link pills share the same neutral
+% gray so they read as quiet metadata rather than visual highlights.
+\definecolor{badge}{HTML}{8A8F98}         % Soft gray used for PDF/code/homepage pills
+\definecolor{ghDark}{HTML}{24292E}        % GitHub star badge left half (data-carrying)
+\definecolor{ghLight}{HTML}{EFF1F4}       % GitHub star badge right half background
+\definecolor{ghStar}{HTML}{555555}        % Star count text
+\definecolor{hfYellow}{HTML}{FFD21E}      % Hugging Face yellow
+\definecolor{hfInk}{HTML}{1A1A1A}         % Hugging Face dark text
+
+\color{ink}
+\hypersetup{colorlinks=true, urlcolor=accent, linkcolor=accent}
+
+% -------------------- PAGE STYLE --------------------
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\footnotesize\color{muted}\textls[80]{Qin You \,\textperiodcentered\, Curriculum Vitae \,\textperiodcentered\, Page \thepage}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\raggedbottom
+
+\pdfgentounicode=1
+
+% -------------------- SECTION FORMAT --------------------
+\titleformat{\section}
+  {\rmfamily\color{accent}\bfseries\small}
+  {}{0em}
+  {\textls[180]{\MakeUppercase{#1}}}
+  [\vspace{1pt}{\color{accent}\titlerule[0.7pt]}]
+\titlespacing*{\section}{0pt}{8pt}{4pt}
+
+% Keep section headings glued to their content; if there isn't at least
+% a few lines of space remaining, the heading moves to the next page.
+\pretocmd{\section}{\needspace{2\baselineskip}}{}{}
+
+% -------------------- CUSTOM BLOCKS --------------------
+
+% Inline hyperlink shown in linkBlue (used for advisor names, project pages, etc.).
+\newcommand{\cvLink}[2]{\href{#1}{\color{linkBlue}#2}}
+
+% Two-row heading: institution / dates  +  role / detail.
+% Uses \hfill so the title takes whatever width it needs (up to the full line)
+% with the right-side annotation flush right.  \needspace keeps the heading
+% from being orphaned at the foot of a page.
+\newcommand{\cvHeading}[4]{%
+  \needspace{4\baselineskip}%
+  \vspace{1pt}%
+  \noindent
+  {\color{accent}\bfseries #1}\hfill{\color{muted}\small #2}\par
+  \vspace{1pt}%
+  \noindent
+  {\itshape\color{ink} #3}\hfill{\color{muted}\small\itshape #4}\par
+  \vspace{1pt}%
+}
+
+% Project block: bold title with optional right-aligned date.  When no date
+% is provided, the title takes the full line width (so long titles don't wrap
+% prematurely).
+\newcommand{\cvProject}[2]{%
+  \vspace{2pt}%
+  \notblank{#2}{%
+    \noindent{#1}\hfill{\color{muted}\small #2}\par
+  }{%
+    \noindent{#1}\par
+  }%
+  \vspace{0pt}%
+}
+
+% Project block with a links sub-line (rendered in small font, slightly
+% indented).  Useful when project pages / reports / code links accompany
+% a long title.
+\newcommand{\cvProjectLinks}[2]{%
+  \vspace{2pt}%
+  {#1}%
+  \notblank{#2}{\\[1pt]\hspace*{1.2em}{\small #2}}{}%
+  \par\vspace{0pt}%
+}
+
+% Small icon badge: \cvBadge{url}{bg-color}{icon-cmd}
+\newcommand{\cvBadge}[3]{%
+  \href{#1}{\tikz[baseline=(b.base)]\node[
+    inner xsep=3pt, inner ysep=0.6pt,
+    rounded corners=1.5pt, fill=#2, text=white,
+    font=\sffamily\scriptsize] (b) {#3};}%
+}
+% Variant with custom text colour (for light backgrounds, e.g. HF yellow)
+\newcommand{\cvBadgeT}[4]{%
+  \href{#1}{\tikz[baseline=(b.base)]\node[
+    inner xsep=3pt, inner ysep=0.6pt,
+    rounded corners=1.5pt, fill=#2, text=#3,
+    font=\sffamily\bfseries\scriptsize] (b) {#4};}%
+}
+
+\newcommand{\cvLinkPDF}[1]{\cvBadge{#1}{badge}{\faIcon{file-pdf}}}
+\newcommand{\cvLinkCode}[1]{\cvBadge{#1}{badge}{\faIcon{github}}}
+\newcommand{\cvLinkHome}[1]{\cvBadge{#1}{badge}{\faIcon{globe}}}
+% Hugging Face: real 🤗 emoji image (pdflatex can't render emoji glyphs natively).
+\newcommand{\cvLinkHF}[1]{%
+  \href{#1}{\raisebox{-0.15em}{\includegraphics[height=1.05em]{assets/hf_face.png}}}%
+}
+
+% GitHub badge with star count: a two-segment connected pill.
+% \cvCodeStar{url}{star-count}
+\newcommand{\cvCodeStar}[2]{%
+  \href{#1}{\tikz[baseline=(L.base)]{%
+    \node[fill=ghDark, text=white,
+          font=\sffamily\scriptsize,
+          inner xsep=3pt, inner ysep=0.6pt,
+          rounded corners=1.5pt,
+          outer sep=0pt] (L) {\faIcon{github}};
+    \node[fill=ghLight, text=ghStar,
+          font=\sffamily\bfseries\scriptsize,
+          inner xsep=3pt, inner ysep=0.6pt,
+          rounded corners=1.5pt,
+          outer sep=0pt,
+          anchor=west, xshift=-2pt] at (L.east) (R) {\faIcon{star}\,#2};
+  }}%
+}
+
+% Publication entry (9 args):
+%   #1 title  #2 authors  #3 venue  #4 status
+%   #5 pdf-url  #6 code-url  #7 homepage-url  #8 huggingface-url
+%   #9 github star count (renders two-segment badge if non-empty AND #6 set)
+% Pass empty {} for anything that doesn't apply.
+\newcommand{\cvPub}[9]{%
+  \item[\textcolor{accent}{\small\faAngleDoubleRight}]%
+    \textbf{#1}%
+    \notblank{#5}{~\cvLinkPDF{#5}}{}%
+    \notblank{#6}{\notblank{#9}{~\cvCodeStar{#6}{#9}}{~\cvLinkCode{#6}}}{}%
+    \notblank{#7}{~\cvLinkHome{#7}}{}%
+    \notblank{#8}{~\cvLinkHF{#8}}{}%
+    \\[1pt]
+    {\footnotesize\color{ink} #2}\\[1pt]
+    {\footnotesize\itshape\color{accentSoft} #3}%
+    \notblank{#4}{\,\,{\footnotesize\color{accent}\textbf{[#4]}}}{}%
+}
+
+% Inline tag (for skills, etc.)
+\newcommand{\cvTag}[1]{%
+  \tikz[baseline=(t.base)]\node[
+    inner xsep=5pt, inner ysep=1.5pt,
+    rounded corners=2pt,
+    fill=tagBg, text=accent,
+    font=\sffamily\footnotesize] (t) {#1};\,%
+}
+
+% Skill row: \cvSkillRow{Languages}{C/C++, Python, …}
+\newcommand{\cvSkillRow}[2]{%
+  \vspace{1pt}%
+  \noindent
+  \begin{minipage}[t]{0.16\linewidth}
+    \raggedright{\rmfamily\bfseries\color{accent}\footnotesize\MakeUppercase{#1}}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.83\linewidth}
+    \raggedright #2
+  \end{minipage}%
+  \par%
+}
+
+% Lists
+\newcommand{\cvListStart}{\begin{itemize}[leftmargin=1.2em, itemsep=1pt, parsep=0pt, topsep=2pt, label={\textcolor{accentSoft}{\small\textbullet}}]}
+\newcommand{\cvListEnd}{\end{itemize}\vspace{0pt}}
+
+\newcommand{\cvPubListStart}{\begin{itemize}[leftmargin=1.4em, itemsep=3pt, parsep=0pt, topsep=2pt, label={}]}
+\newcommand{\cvPubListEnd}{\end{itemize}}
+
+\newcommand{\cvBlockStart}{\begin{itemize}[leftmargin=0pt, itemsep=5pt, parsep=0pt, topsep=2pt, label={}]}
+\newcommand{\cvBlockEnd}{\end{itemize}}
+
+% -------------------- DOCUMENT --------------------
+\begin{document}
+
+% Auto-updating month label: produces e.g. "May 2026".
+\newcommand{\cvMonthYear}{%
+  \ifcase\month\or January\or February\or March\or April\or May\or June\or
+   July\or August\or September\or October\or November\or December\fi\,\the\year%
+}
+
+% ===== HEADER =====================================================
+{\hfill\itshape\color{muted}\footnotesize Last updated in \cvMonthYear\par}
+\vspace{-1.4em}
+
+\begin{center}
+  {\rmfamily\bfseries\Huge\color{accent} Qin\, You}\\[3pt]
+  {\rmfamily\color{muted}\footnotesize\textls[200]{\MakeUppercase{Ph.D.\ Candidate \textperiodcentered\ Computer Science \textperiodcentered\ National University of Singapore}}}\\[5pt]
+  {\small\color{ink}%
+    \faIcon{envelope}\;\href{mailto:e0962995@u.nus.edu}{e0962995@u.nus.edu}%
+    \quad{\color{rule}\textbar}\quad
+    \faIcon{phone}\;+65\,8039\,5597%
+    \quad{\color{rule}\textbar}\quad
+    \faIcon{globe}\;\href{https://42xingxing.github.io/}{\color{linkBlue}Homepage}%
+    \quad{\color{rule}\textbar}\quad
+    \faIcon{graduation-cap}\;\href{https://scholar.google.com/citations?user=qC39v8kAAAAJ}{\color{linkBlue}Google Scholar}%
+  }
+\end{center}
+
+\vspace{2pt}
+{\color{rule}\rule{\linewidth}{0.4pt}}
+\vspace{-6pt}
+
+% ===== BODY =======================================================
+\input{subsections/education}
+\input{subsections/research_exp}
+\input{subsections/survey}
+\input{subsections/publications}
+\input{subsections/course_works}
+\input{subsections/reviewer}
+\input{subsections/teaching}
+\input{subsections/skills}
+
+\end{document}
