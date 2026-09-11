@@ -2,21 +2,39 @@
 
 \cvBlockStart
 
-  % --------- Tencent Hunyuan, Application Center ---------
+  % --------- Tencent Hunyuan, Foundation Model Center ---------
   \item
   \cvHeading
-    {\cvLink{https://hunyuan.tencent.com/}{Tencent Hunyuan}, Application Center}{Nov 2025 -- Present}
-    {Research Intern \,\textperiodcentered\, Advisors:
+    {\cvLink{https://hunyuan.tencent.com/}{Tencent Hunyuan}}{May 2, 2026 -- Present}
+    {\textbf{Tencent Project UP (Qingyun Program)} \,\textperiodcentered\, Foundation Model Center}{Shenzhen, China}
+
+  \cvProject{\textit{Advisors:}
+      \cvLink{https://scholar.google.com/citations?user=B1EhbCsAAAAJ}{Jianbo Yuan}
+      \,\&\,
+      \cvLink{https://scholar.google.com/citations?user=Hy12lcEAAAAJ}{Linqing Wang}}{}
+
+  \cvProject{\textbf{Hunyuan Omni Foundation Model}}{}
+  \cvListStart
+    \item Contributing to the development of Hunyuan Omni, a native omni-modal foundation model for unified multimodal understanding and generation.
+  \cvListEnd
+
+  % --------- Tencent Hunyuan, Application Model Center ---------
+  \item
+  \cvHeading
+    {\cvLink{https://hunyuan.tencent.com/}{Tencent Hunyuan}}{Nov 2025 -- May 1, 2026}
+    {Research Intern \,\textperiodcentered\, Application Model Center}{Shenzhen, China}
+
+  \cvProject{\textit{Advisors:}
       \cvLink{https://scholar.google.com/citations?user=VXQV5xwAAAAJ}{Chunyu Wang}
       \,\&\,
-      \cvLink{https://scholar.google.com/citations?user=Hy12lcEAAAAJ}{Linqing Wang}}{Shenzhen, China}
+      \cvLink{https://scholar.google.com/citations?user=Hy12lcEAAAAJ}{Linqing Wang}}{}
 
-  \cvProjectLinks{\textbf{(1) SOAR: Self-Correction for Optimal Alignment in Rectified-Flow Diffusion}}{\cvLink{https://hy-soar.github.io/}{Project Page}\,\textperiodcentered\,\cvLink{https://arxiv.org/abs/2604.12617}{Report}}
+  \cvProjectLinks{\textbf{(1) SOAR: Self-Correction for Optimal Alignment and Refinement in Rectified-Flow Diffusion}}{\cvLink{https://hy-soar.github.io/}{Project Page}\,\textperiodcentered\,\cvLink{https://arxiv.org/abs/2604.12617}{Report}}
   \cvListStart
     \item Proposed a scalable, \emph{reward-free} post-training framework that targets exposure bias in the denoising trajectory by sampling on-trajectory states, performing a stop-gradient CFG rollout with the current model, and supervising the denoiser with analytical correction targets.
     \item Designed an on-policy, dense, per-timestep objective that subsumes the standard SFT loss and remains compatible with subsequent RL alignment.
     \item On SD3.5-Medium: GenEval $\mathbf{0.70 \rightarrow 0.78}$ and OCR $\mathbf{0.64 \rightarrow 0.67}$ over SFT, with simultaneous gains on every DrawBench preference and quality metric; surpasses Flow-GRPO on aesthetic and CLIPScore tasks despite using \emph{no} reward model.
-    \item Open-sourced as \cvLink{https://github.com/Tencent-Hunyuan/HY-SOAR}{HY-SOAR} (400+ GitHub stars).
+    \item Open-sourced as \cvLink{https://github.com/Tencent-Hunyuan/HY-SOAR}{HY-SOAR} (744 GitHub stars).
   \cvListEnd
 
   \cvProject{\textbf{(2) JAVRL: Joint Audio-Video RL for Multi-Speaker Lip-Sync Alignment}}{}
